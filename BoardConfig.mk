@@ -1,4 +1,4 @@
-DEVICE_TREE := device/smartron/rimo02a
+DEVICE_PATH := device/smartron/rimo02a
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := msm8952
@@ -6,7 +6,6 @@ TARGET_NO_BOOTLOADER := true
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8952
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno510
 
 # Architecture
 TARGET_ARCH := arm64
@@ -21,15 +20,12 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 
-# Kernel
-#TARGET_KERNEL_SOURCE := kernel/smartron/msm8976
-#TARGET_KERNEL_CONFIG := twrp_defconfig
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 
-TARGET_PREBUILT_KERNEL := $(DEVICE_TREE)/Image.gz-dtb
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/Image.gz-dtb
 
-# Boot image
+# Kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk ramoops_memreserve=4M androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -40,7 +36,7 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2684354560
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 26838785024
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 58644208640
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # File systems
@@ -50,19 +46,16 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
-RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0/file
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_DEFAULT_BRIGHTNESS := 80
-TW_DEFAULT_EXTERNAL_STORAGE := true
 TW_EXCLUDE_SUPERSU := true
 TW_INCLUDE_NTFS_3G := true
+TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_IGNORE_MISC_WIPE_DATA := true
-
-# Asian region languages
-TW_EXTRA_LANGUAGES := true
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/twrp.fstab
 
 # Encryption support
 TW_INCLUDE_CRYPTO := true

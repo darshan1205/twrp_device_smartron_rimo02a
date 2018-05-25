@@ -1,0 +1,33 @@
+/system		ext4	/dev/block/platform/soc.0/7824900.sdhci/by-name/system
+/system_image	emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/system
+/data		ext4	/dev/block/platform/soc.0/7824900.sdhci/by-name/userdata	flags=length=-16384
+/cache          ext4	/dev/block/platform/soc.0/7824900.sdhci/by-name/cache
+/boot		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/boot
+/recovery	emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/recovery	flags=backup=1
+
+# For bootloader commands to recovery
+/misc		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/misc
+
+# Firmware
+/firmware	vfat	/dev/block/platform/soc.0/7824900.sdhci/by-name/modem	flags=backup=1;display="Firmware";mounttodecrypt
+
+/aboot		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/aboot	flags=backup=1;display="Bootloader"
+/cmnlib		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/cmnlib	flags=backup=1;subpartitionof=/aboot
+/hyp		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/hyp	flags=backup=1;subpartitionof=/aboot
+/tz		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/tz	flags=backup=1;subpartitionof=/aboot
+/rpm		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/rpm	flags=backup=1;subpartitionof=/aboot
+/keymaster	emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/keymaster	flags=backup=1;subpartitionof=/aboot
+/devcfg		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/devcfg	flags=backup=1;subpartitionof=/aboot
+
+# Modem backup/restore
+/modem		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/modem	flags=backup=1;display="Modem"
+/dsp		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/dsp	flags=backup=1;subpartitionof=/modem
+
+# EFS backup/restore
+/efs1		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/modemst1	flags=backup=1;display="EFS"
+/efs2		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/modemst2	flags=backup=1;subpartitionof=/efs1
+/efsg		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/fsg	flags=backup=1;subpartitionof=/efs1
+/efsc		emmc	/dev/block/platform/soc.0/7824900.sdhci/by-name/fsc	flags=backup=1;subpartitionof=/efs1
+
+# Removable devices
+/usb-otg       auto	/dev/block/sda1 /dev/block/sda          flags=display="USB OTG";storage;wipeingui;removable
